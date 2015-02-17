@@ -26,6 +26,7 @@
     "gulp": "^3.8.11",
     "gulp-livereload": "^3.7.0",
     "gulp-minify-css": "^0.4.5",
-    "gulp-preprocess": "^1.2.0"
+    "gulp-preprocess": "^1.2.0",
+    "marked": "^0.3.3"
   }
 }

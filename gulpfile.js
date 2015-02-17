@@ -4,6 +4,7 @@
 var paths = {
     html: ['./src/html/*.html'],
     css: ['./src/css/*.css'],
+    readme: ['README.md'],
     dest: {
         dist: './dist',
         dev: './dev'
@@ -12,8 +13,11 @@ var paths = {
 
 
 /* Tools ------------------------------------------------------------------- */
+var fs = require('fs');
+
 var gulp = require('gulp');
 var livereload = require('gulp-livereload');
+var marked = require('marked');
 var preprocess = require('gulp-preprocess');
 
 
@@ -29,9 +33,14 @@ gulp.task('copy-static', function(){
 
 /* HTML related tasks ------------------------------------------------------ */
 gulp.task('dev-html', function(){
+    var readme = marked(fs.readFileSync('README.md', 'utf8'));
+
     gulp.src(paths.html)
         .pipe(preprocess({
-            context: {DEV: true}
+            context: {
+                DEV: true,
+                readme: readme
+            }
         }))
         .pipe(gulp.dest(paths.dest.dev))
         .pipe(livereload());
@@ -63,6 +72,7 @@ gulp.task('dev', ['dev-css', 'dev-html'], function(){
 
     gulp.watch(paths.css, ['dev-css']);
     gulp.watch(paths.html, ['dev-html']);
+    gulp.watch(paths.readme, ['dev-html']);
 });
 
 gulp.task('default', ['build-css', 'build-html', 'copy-static']);

@@ -8,13 +8,12 @@ body {
 h1 {
     color: #eef6e5;
     background-color: #00acaa;
-    margin-top: 0;
-    margin-bottom: 4px;
+    margin: -6px -6px 4px -6px;
     padding: 6px;
 }
 
 /* canvas related selectors ------------------------------------------------ */
-#avsort {
+#avsort-canvas {
     position: fixed;
     transition: opacity 0.4s ease;
     opacity: 0.6;
