@@ -33,7 +33,7 @@ gulp.task('copy-static', function(){
 
 /* HTML related tasks ------------------------------------------------------ */
 gulp.task('dev-html', function(){
-    var readme = marked(fs.readFileSync('README.md', 'utf8'));
+    var readme = marked(fs.readFileSync(paths.readme[0], 'utf8'));
 
     gulp.src(paths.html)
         .pipe(preprocess({
