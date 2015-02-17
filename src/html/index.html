@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>avsort.js</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <!-- @ifdef DEV -->
+    <link rel="stylesheet" type="text/css" href="../src/lib/codemirror/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="../src/css/style.css">
+    <script src="http://localhost:35729/livereload.js"></script>
+    <!-- @endif -->
+    <!-- @ifndef DEV -->
+    <link rel="stylesheet" type="text/css" href="./lib/codemirror/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script src="./lib/codemirror/codemirror-compressed.js"></script>
+    <!-- @endif -->
+</head>
+<body>
+    <input type="checkbox" id="window-state">
+    <canvas id="avsort"></canvas>
+    <div id="window" class="window">
+        <div class="tab">
+            <input type="radio" name="tab" id="editor-tab" checked>
+            <label for="editor-tab" class="tab-label tab-lbl-left">Editor</label>
+            <div class="tab-content" id="editor-content">
+                <div id="editor-controls">
+                    <select class="dropdown" id="algorithms">
+                        <optgroup label="Built-in algorithms" id="build-in-algorithms"></optgroup>
+                        <optgroup label="Saved algorithms" id="user-algorithms"></optgroup>
+                    </select>
+                    <span class="ctrl-btn" id="load">Load</span>
+                    <span class="ctrl-btn" id="save-as">Save As</span>
+                    <span class="spacer svline"></span>
+                    <span id="save-controls">
+                        <span class="ctrl-btn" id="delete">Delete</span>
+                        <span class="ctrl-btn" id="save">Save</span>
+                        <span class="spacer svline"></span>
+                    </span>
+                    <span class="ctrl-btn" id="run">Compile</span>
+                    <span class="spacer"></span>
+                    <span class="ctrl-btn" id="btn-enable-edit">Enable editing</span>
+                </div>
+                <div id="editor"></div>
+            </div>
+        </div>
+        <label for="window-state" class="tab-label tab-lbl-right">Hide</label>
+        <div class="tab">
+            <input type="radio" name="tab" id="about-tab">
+            <label for="about-tab" class="tab-label tab-lbl-right">About</label>
+            <div class="tab-content" id="about-content">
+                <h1>avsort.js</h1>
+            </div>
+        </div>
+        <div class="tab">
+            <input type="radio" name="tab" id="settings-tab">
+            <label for="settings-tab" class="tab-label tab-lbl-right">Settings</label>
+            <div class="tab-content" id="settintgs-content">
+                <div class="content-box">
+                    <form id="settings">
+                        <input type="checkbox" id="editor-auto-enable">
+                        <label for="editor-auto-enable">Enable editor automatically</label>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="tab-bg"></div>
+    </div>
+    <button id="control-hover-area" autofocus></button>
+    <div id="controls">
+        <div class="ctrl-row">
+            <span class="ctrl-btn" id="play">Play</span>
+            <span class="ctrl-btn" id="step-forward">Step forward</span>
+        </div>
+        <label for="window-state" id="toggle-window" class="ctrl-btn" data-shown="Hide window" data-hidden="Show window"></label>
+    </div>
+</body>
+</html>
