@@ -12,5 +12,6 @@
   "eqnull": true,
   "browser": true,
   "node": true,
-  "devel": true
+  "devel": true,
+  "predef": ["q", "qa", "CodeMirror"]
 }
