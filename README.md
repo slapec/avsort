@@ -1,4 +1,4 @@
-# avsort
+# avsort.js
 This is client-side Javascript application developed to create audiovisual introductions of sorting algorithms, and it is also my BSc thesis.
 
 The idea of this project is based on [Timo Bingmann's](http://panthema.net/about/) excellent software called [sound-of-sorting](http://panthema.net/2013/sound-of-sorting/) however due to the nature of Javascript (and the lack of my C++ knowledge) this application is written from scratch.
