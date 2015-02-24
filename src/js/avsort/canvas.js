@@ -2,6 +2,7 @@
 var defaults = require('../defaults.js');
 var utils = require('../utils.js');
 var AVArray = require('./array.js');
+var AVSynth = require('./synth.js');
 
 var types = defaults.INSTRUCTION_TYPES;
 var palette = defaults.PALETTE;
@@ -40,6 +41,7 @@ function AVCanvas(options){
     this.minFrequency = this.options.minFrequency!==undefined?this.options.minFrequency:defaults.MIN_FREQUENCY;
     this.maxFrequency = this.options.maxFrequency!==undefined?this.options.maxFrequency:defaults.MAX_FREQUENCY;
 
+    this.synth = new AVSynth();
     this.frequencyRange = this.maxFrequency - this.minFrequency;
     this.context = this.canvas.getContext('2d');
     this.setSize.apply(this, this.size);
@@ -177,6 +179,12 @@ AVCanvas.prototype.processInstruction = function(){
 
         columns[r].save();
         columns[r].fillStyle = palette.highlight;
+
+        var lFreq = this.minFrequency + ((columns[l].value/this.arrayMax)*this.frequencyRange);
+        var rFreq = this.minFrequency + ((columns[r].value/this.arrayMax)*this.frequencyRange);
+
+        this.synth.sound(lFreq);
+        this.synth.sound(rFreq);
     }
     if(cmd === types.swap){
         var l = instruction.i[0];

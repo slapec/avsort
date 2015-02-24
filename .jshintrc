@@ -13,5 +13,5 @@
   "browser": true,
   "node": true,
   "devel": true,
-  "predef": ["q", "qa", "CodeMirror"]
+  "predef": ["q", "qa", "CodeMirror", "AudioContext"]
 }
