@@ -1,1 +1,5 @@
-// avsort main comes here
+require('./globals.js');
+
+window.onload = function(){
+    require('./setup.js')();
+};

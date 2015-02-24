@@ -20,6 +20,7 @@ AVInstructions.prototype.push = function(){
     if(this.length >= this.limit){
         throw new Error(defaults.LIMIT_REACHED_ERROR_TEXT);
     }
+    return Array.prototype.push.apply(this, arguments);
 };
 
 /* AVArray is a special subclass of Array type. It both remembers its initial
@@ -48,8 +49,8 @@ AVArray.prototype.reset = function(){
     }
 };
 
-/* Helper methods ---------------------------------------------------------- */
 
+/* Helper methods ---------------------------------------------------------- */
 AVArray.prototype.getMax = function () {
     var maxIndex = 0;
     var max = this[maxIndex];
@@ -84,8 +85,8 @@ AVArray.prototype._swap = function(i, j){
     this[j] = temp;
 };
 
-/* Methods which create instructions too ----------------------------------- */
 
+/* Methods which create instructions too ----------------------------------- */
 AVArray.prototype.swap = function(i, j){
     this.instructions.push({
         c: types.swap,
@@ -122,8 +123,8 @@ AVArray.prototype.highlight = function(){
     });
 };
 
-/* Arithmetic methods which create instructions too ------------------------ */
 
+/* Arithmetic methods which create instructions too ------------------------ */
 AVArray.prototype.lt = function(i, j){
     this.instructions.push({
         c: types.compare,

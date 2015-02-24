@@ -19,6 +19,16 @@ h1 {
     opacity: 0.6;
 }
 
+/* CodeMirror style -------------------------------------------------------- */
+.CodeMirror {
+    position: absolute;
+    height: auto;
+    width: 100%;
+    top: 35px;
+    bottom: 0;
+    background-color: #eef6e5;
+}
+
 
 /* control related selectors ----------------------------------------------- */
 #controls {
@@ -102,7 +112,7 @@ h1 {
     visibility: hidden;
 }
 
-#window-state:checked ~ #avsort {
+#window-state:checked ~ #avsort-canvas {
     opacity: 1
 }
 
