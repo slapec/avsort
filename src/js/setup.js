@@ -364,6 +364,20 @@ module.exports = function () {
         avsort.stepForward();
     };
 
+    var rngVolume = q('#volume');
+    var volume = localStorage.getItem('volume');
+    if(volume !== null){
+        rngVolume.value = volume;
+    }
+    avsort.setVolume(rngVolume.value);
+    rngVolume.oninput = function(e){
+        avsort.setVolume(e.target.value);
+    };
+
+    rngVolume.onchange = function(e){
+        localStorage.setItem('volume', e.target.value);
+    };
+
     // Loading data
     registerAlgorithms();
     var defaultOption = q('option[value='+ defaults.DEFAULT_ALGO +']');
