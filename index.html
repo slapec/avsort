@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>avsort.js</title>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="./lib/codemirror/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script src="./lib/codemirror/codemirror-compressed.js"></script>
+    <script src="avsort.js"></script>
+</head>
+<body>
+    <input type="checkbox" id="window-state">
+    <canvas id="avsort-canvas"></canvas>
+    <div id="window" class="window">
+        <div class="tab">
+            <input type="radio" name="tab" id="editor-tab" checked>
+            <label for="editor-tab" class="tab-label tab-lbl-left">Editor</label>
+            <div class="tab-content" id="editor-content">
+                <div id="editor-controls">
+                    <select class="dropdown" id="algorithms">
+                        <optgroup label="Built-in algorithms" id="build-in-algorithms"></optgroup>
+                        <optgroup label="Saved algorithms" id="user-algorithms"></optgroup>
+                    </select>
+                    <span class="ctrl-btn" id="load">Load</span>
+                    <span class="ctrl-btn" id="save-as">Save As</span>
+                    <span class="spacer svline"></span>
+                    <span id="save-controls">
+                        <span class="ctrl-btn" id="delete">Delete</span>
+                        <span class="ctrl-btn" id="save">Save</span>
+                        <span class="spacer svline"></span>
+                    </span>
+                    <span class="ctrl-btn" id="run">Compile</span>
+                    <span class="spacer"></span>
+                    <span class="ctrl-btn" id="btn-enable-edit">Enable editing</span>
+                </div>
+                <div id="editor"></div>
+            </div>
+        </div>
+        <label for="window-state" class="tab-label tab-lbl-right">Hide</label>
+        <div class="tab">
+            <input type="radio" name="tab" id="about-tab">
+            <label for="about-tab" class="tab-label tab-lbl-right">About</label>
+            <div class="tab-content" id="about-content">
+                <div class="content-box">
+                    <h1 id="avsort-js">avsort.js</h1>
+<p>This is client-side Javascript application developed to create audiovisual introductions of sorting algorithms, and it is also my BSc thesis.</p>
+<p>The idea of this project is based on <a href="http://panthema.net/about/">Timo Bingmann&#39;s</a> excellent software called <a href="http://panthema.net/2013/sound-of-sorting/">sound-of-sorting</a> however due to the nature of Javascript (and the lack of my C++ knowledge) this application is written from scratch.</p>
+<h2 id="project-home">Project home</h2>
+<p><a href="https://github.com/slapec/avsort">https://github.com/slapec/avsort</a></p>
+<p>This is an open-source project licensed under <a href="https://github.com/slapec/avsort/blob/master/LICENSE">GPLv2</a>. Hosted by GitHub.</p>
+<h2 id="pull-requests">Pull requests</h2>
+<p>Please don&#39;t create any pull request as long as any of the major features are still missing (<em>This paragraph will be removed when the project will become ready</em>).</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="tab">
+            <input type="radio" name="tab" id="settings-tab">
+            <label for="settings-tab" class="tab-label tab-lbl-right">Settings</label>
+            <div class="tab-content" id="settintgs-content">
+                <div class="content-box">
+                    <form id="settings">
+                        <input type="checkbox" id="editor-auto-enable">
+                        <label for="editor-auto-enable">Enable editor automatically</label>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="tab-bg"></div>
+    </div>
+    <button id="control-hover-area" autofocus></button>
+    <div id="controls">
+        <div class="ctrl-row">
+            <span class="ctrl-btn" id="play">Play</span>
+            <span class="ctrl-btn" id="step-forward">Step forward</span>
+            <span class="range-wrapper">
+                Volume:
+                <input type="range" min="0" max="100" id="volume">
+            </span>
+        </div>
+        <label for="window-state" id="toggle-window" class="ctrl-btn" data-shown="Hide window" data-hidden="Show window"></label>
+    </div>
+</body>
+</html>
