@@ -87,9 +87,13 @@ gulp.task('dev-html', function(){
 });
 
 gulp.task('build-html', function(){
+    var readme = marked(fs.readFileSync(paths.readme[0], 'utf8'));
+
     gulp.src(paths.html)
         .pipe(preprocess({
-            context: {}
+            context: {
+                readme: readme
+            }
         }))
         .pipe(gulp.dest(paths.dest.dist));
 });
