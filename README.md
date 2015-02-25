@@ -12,6 +12,9 @@ Live version is hosted at
 [http://slapec.github.io/avsort/](http://slapec.github.io/avsort/)
 by GitHub Pages.
 
+Sometimes the built-in source codes are not indented in the editor (it isn't CodeMirror's fault). Try
+to reload the page (`CTRL+F5`), it should work.
+
 ## Building
 Node.js is required to build the application:
 
