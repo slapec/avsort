@@ -7,10 +7,10 @@ function AVSynth(){
 
     this.context = new AudioContext();
     this.compressor = this.context.createDynamicsCompressor();
+    this.gain = this.context.createGain();
 
-    this.compressor.connect(this.context.destination);
-    this.oscs = [];
-    window.asd = this.oscs;
+    this.compressor.connect(this.gain);
+    this.gain.connect(this.context.destination);
 }
 
 AVSynth.prototype.sound = function(freq){
@@ -30,8 +30,10 @@ AVSynth.prototype.sound = function(freq){
     gain.gain.setValueAtTime(0.5, ctx.currentTime+this.sustain);
     gain.gain.linearRampToValueAtTime(0, ctx.currentTime+this.sustain+this.release);
     osc.stop(ctx.currentTime+this.sustain+this.release);
+};
 
-    this.oscs.push(osc);
+AVSynth.prototype.setVolume = function(value){
+    this.gain.gain.value = value/100;
 };
 
 module.exports = AVSynth;

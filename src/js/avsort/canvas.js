@@ -148,6 +148,7 @@ AVCanvas.prototype.processInstruction = function(){
         return false;
     }
 
+    var synth = this.synth;
     var instructions = this.array.instructions;
     var instruction = instructions[this.instructionPointer];
     if(instruction === undefined){
@@ -183,8 +184,8 @@ AVCanvas.prototype.processInstruction = function(){
         var lFreq = this.minFrequency + ((columns[l].value/this.arrayMax)*this.frequencyRange);
         var rFreq = this.minFrequency + ((columns[r].value/this.arrayMax)*this.frequencyRange);
 
-        this.synth.sound(lFreq);
-        this.synth.sound(rFreq);
+        synth.sound(lFreq);
+        synth.sound(rFreq);
     }
     if(cmd === types.swap){
         var l = instruction.i[0];
@@ -206,6 +207,8 @@ AVCanvas.prototype.processInstruction = function(){
             column.save();
             column.fillStyle = palette.mark;
             column.marked = true;
+
+            this.synth.sound(this.minFrequency + (column.value/this.arrayMax)*this.frequencyRange);
         }
     }
     if (cmd === types.highlight){
@@ -285,6 +288,10 @@ AVCanvas.prototype.stepForward = function () {
         this.processInstruction();
     }
     this.instructionPointer++;
+};
+
+AVCanvas.prototype.setVolume = function(value){
+    this.synth.setVolume(value);
 };
 
 module.exports = AVCanvas;
