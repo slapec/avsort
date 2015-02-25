@@ -260,3 +260,22 @@ input[type=radio]:checked ~ label {
     cursor: default;
     border: 1px solid #d3423d;
 }
+
+input[type=range]{
+    -webkit-appearance: none;
+    vertical-align: middle;
+    height: 4px;
+    background: #1f1f1f;
+}
+
+input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    background: #1f1f1f;
+    border: 1px solid #00acaa;
+}
+
+input[type=range]:focus{
+    outline: none;
+}

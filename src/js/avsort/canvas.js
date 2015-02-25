@@ -2,6 +2,7 @@
 var defaults = require('../defaults.js');
 var utils = require('../utils.js');
 var AVArray = require('./array.js');
+var AVSynth = require('./synth.js');
 
 var types = defaults.INSTRUCTION_TYPES;
 var palette = defaults.PALETTE;
@@ -40,6 +41,7 @@ function AVCanvas(options){
     this.minFrequency = this.options.minFrequency!==undefined?this.options.minFrequency:defaults.MIN_FREQUENCY;
     this.maxFrequency = this.options.maxFrequency!==undefined?this.options.maxFrequency:defaults.MAX_FREQUENCY;
 
+    this.synth = new AVSynth();
     this.frequencyRange = this.maxFrequency - this.minFrequency;
     this.context = this.canvas.getContext('2d');
     this.setSize.apply(this, this.size);
@@ -146,6 +148,7 @@ AVCanvas.prototype.processInstruction = function(){
         return false;
     }
 
+    var synth = this.synth;
     var instructions = this.array.instructions;
     var instruction = instructions[this.instructionPointer];
     if(instruction === undefined){
@@ -177,6 +180,12 @@ AVCanvas.prototype.processInstruction = function(){
 
         columns[r].save();
         columns[r].fillStyle = palette.highlight;
+
+        var lFreq = this.minFrequency + ((columns[l].value/this.arrayMax)*this.frequencyRange);
+        var rFreq = this.minFrequency + ((columns[r].value/this.arrayMax)*this.frequencyRange);
+
+        synth.sound(lFreq);
+        synth.sound(rFreq);
     }
     if(cmd === types.swap){
         var l = instruction.i[0];
@@ -198,6 +207,8 @@ AVCanvas.prototype.processInstruction = function(){
             column.save();
             column.fillStyle = palette.mark;
             column.marked = true;
+
+            this.synth.sound(this.minFrequency + (column.value/this.arrayMax)*this.frequencyRange);
         }
     }
     if (cmd === types.highlight){
@@ -277,6 +288,10 @@ AVCanvas.prototype.stepForward = function () {
         this.processInstruction();
     }
     this.instructionPointer++;
+};
+
+AVCanvas.prototype.setVolume = function(value){
+    this.synth.setVolume(value);
 };
 
 module.exports = AVCanvas;
