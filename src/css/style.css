@@ -261,6 +261,24 @@ input[type=radio]:checked ~ label {
     border: 1px solid #d3423d;
 }
 
+button {
+    color: #00acaa;
+    background-color: #1f1f1f;
+    border: 2px solid #1f1f1f;
+    padding: 2px;
+    margin-right: -2px;
+    height: 30px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+}
+
+button:active {
+    color: #1f1f1f;
+    background-color: #00acaa;
+}
+
 input[type=range]{
     -webkit-appearance: none;
     vertical-align: middle;
