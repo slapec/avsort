@@ -9,7 +9,7 @@ module.exports.INSTRUCTION_TYPES = {
     unmark: 4,
     unmarkAll: 5
 };
-module.exports.LIMIT_REACHED_ERROR_TEXT = 'Instruction queue size limit reached';
+module.exports.LIMIT_REACHED_ERROR_TEXT = 'Instruction list size limit reached';
 
 
 /* Canvas defaults --------------------------------------------------------- */
@@ -24,6 +24,9 @@ module.exports.PALETTE = {
     mark: '#7ad43e'
 };
 
+/* Synth defaults ---------------------------------------------------------- */
+module.exports.MIN_FREQUENCY = 200;
+module.exports.MAX_FREQUENCY = 1200;
 
 /* Editor defaults --------------------------------------------------------- */
 module.exports.EDITOR_SETTINGS = {
@@ -49,7 +52,7 @@ module.exports.EDITOR_SETTINGS = {
     }
 };
 
-module.exports.EDITOR_ALERT = 'Never paste source codes from unknown or untrusted sourses!\n\n' +
+module.exports.EDITOR_ALERT = 'Never paste source codes from unknown or untrusted sources!\n\n' +
 'Compiled code run on your own computer. Malicious codes can crash your browser or can steal your files.';
 
 module.exports.DEFAULT_ALGO = 'quick';
