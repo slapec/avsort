@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>avsort.js</title>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
     <!-- @ifdef DEV -->
     <link rel="stylesheet" type="text/css" href="../src/lib/codemirror/codemirror.css">
     <link rel="stylesheet" type="text/css" href="../src/css/style.css">
@@ -59,7 +59,7 @@
         <div class="tab">
             <input type="radio" name="tab" id="settings-tab">
             <label for="settings-tab" class="tab-label tab-lbl-right">Settings</label>
-            <div class="tab-content" id="settintgs-content">
+            <div class="tab-content" id="settings-content">
                 <div class="content-box">
                     <form id="settings">
                         <input type="checkbox" id="editor-auto-enable">
@@ -79,8 +79,8 @@
                 Volume:
                 <input type="range" min="0" max="100" id="volume">
             </span>
+            <label for="window-state" id="toggle-window" class="ctrl-btn" data-shown="Hide window" data-hidden="Show window"></label>
         </div>
-        <label for="window-state" id="toggle-window" class="ctrl-btn" data-shown="Hide window" data-hidden="Show window"></label>
     </div>
 </body>
 </html>

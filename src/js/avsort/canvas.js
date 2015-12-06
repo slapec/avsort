@@ -54,11 +54,11 @@ AVCanvas.prototype.onend = function(){
     return false;
 };
 
-AVCanvas.prototype.onalgofinished = function () {
+AVCanvas.prototype.onalgofinished = function(){
     return false;
 };
 
-AVCanvas.prototype.setArray = function (array) {
+AVCanvas.prototype.setArray = function(array){
     this.array = new AVArray(array);
     this.columns = [];
     this.arrayMax = this.array.getMax().value;
@@ -68,29 +68,35 @@ AVCanvas.prototype.setArray = function (array) {
         this.columns.push(new AVColumn(this.array[i],this.palette.base));
     }
 
+    this._resetState();
+};
+
+AVCanvas.prototype.getArray = function(){
+    if(this.array === undefined){
+        this.setArray(utils.randomArray(defaults.SAMPLE_ARRAY_SIZE));
+    }
+    return this.array;
+};
+
+AVCanvas.prototype._resetState = function(){
     this.lastFillStyle = '';
     this.toReset = [];
     this.instructionPointer = 0;
 };
 
-AVCanvas.prototype.getArray = function () {
-    if(this.array === undefined){
-        this.setArray(utils.randomArray(100));
-    }
-    return this.array;
-};
-
-AVCanvas.prototype.sort = function (sorter) {
+AVCanvas.prototype.sort = function(sorter){
     var array = this.getArray();
     if(array.instructions.length !== 0){
         array.reset();
+        this.setArray(array);
+        array = this.getArray();
     }
     sorter(array);
     utils.checkSorted(array);
     this.onalgofinished();
 };
 
-AVCanvas.prototype.setSize = function (width, height) {
+AVCanvas.prototype.setSize = function(width, height){
     this.canvas.width = width;
     this.canvas.height = height;
 };
@@ -276,10 +282,7 @@ AVCanvas.prototype.replay = function () {
         this.columns.push(new AVColumn(this.array.initState[i], this.palette.base));
     }
 
-    this.lastFillStyle = '';
-    this.toReset = [];
-    this.instructionPointer = 0;
-
+    this._resetState();
     this.drawFrame();
 };
 
