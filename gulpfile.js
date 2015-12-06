@@ -46,6 +46,8 @@ var minifycs = require('gulp-minify-css');
 gulp.task('copy-static', function(){
       gulp.src('./src/lib/codemirror/*')
           .pipe(gulp.dest(paths.dest.dist + '/lib/codemirror/'));
+    gulp.src('./src/lib/sourcesanspro/*')
+          .pipe(gulp.dest(paths.dest.dist + '/lib/sourcesanspro/'));
 });
 
 
