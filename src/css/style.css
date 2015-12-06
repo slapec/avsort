@@ -61,12 +61,12 @@ h1 {
     opacity: 0;
 }
 
-#control-hover-area:hover ~ #controls {
+#control-hover-area:hover + #controls {
     bottom: 0;
     transition-delay: 0s;
 }
 
-#control-hover-area:focus ~ #controls {
+#control-hover-area:focus + #controls {
     bottom: 0;
     transition-delay: 0s;
 }
@@ -82,7 +82,7 @@ h1 {
     content: attr(data-shown);
 }
 
-#window-state:checked ~ #controls > #toggle-window::before {
+#window-state:checked ~ #controls #toggle-window::before {
     content: attr(data-hidden);
 }
 
@@ -97,7 +97,7 @@ h1 {
     width: 80%;
     height: 80%;
     transform: translate(-50%, -50%);
-    transition: .3s ease;
+    transition: .3s top ease, .3s opacity ease, .3s visibility;
 }
 
 #window-state {
@@ -106,7 +106,7 @@ h1 {
 
 #window-state:checked ~ #window {
     opacity: 0;
-    top: 80%!important;
+    top: 80%;
     visibility: hidden;
 }
 
@@ -124,7 +124,7 @@ h1 {
     z-index: -1;
 }
 
-.tab input[type=radio]{
+.tab > input[type=radio]{
     display: none;
 }
 
@@ -157,13 +157,13 @@ h1 {
     overflow: auto;
 }
 
-input[type=radio]:checked ~ .tab-content {
+.tab > input[type=radio]:checked ~ .tab-content {
     display: block;
     position: absolute;
     top: 42px;
 }
 
-input[type=radio]:checked ~ label {
+.tab > input[type=radio]:checked ~ label {
     background-color: #eef6e5;
     color: #1f1f1f;
 }

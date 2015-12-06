@@ -15,7 +15,7 @@ var errorHandler = function (e) {
     var divError = document.createElement('div');
     divError.classList.add('eval-error');
     divError.innerHTML = 'Error: ' + e.error.message + ' at line: ' + e.lineno + ', column: ' + e.colno;
-    errorWidgets.push(editor.addLineWidget(e.lineno - 1, divError));
+    errorWidgets.push(editor.addLineWidget(editor.lineCount()-1, divError));
 };
 
 

@@ -26,8 +26,8 @@ AVSynth.prototype.sound = function(freq){
     osc.type = 'square';
 
     osc.start(ctx.currentTime);
-    gain.gain.setValueAtTime(0.5, ctx.currentTime);
-    gain.gain.setValueAtTime(0.5, ctx.currentTime+this.sustain);
+    gain.gain.setValueAtTime(1, ctx.currentTime);
+    gain.gain.setValueAtTime(1, ctx.currentTime+this.sustain);
     gain.gain.linearRampToValueAtTime(0, ctx.currentTime+this.sustain+this.release);
     osc.stop(ctx.currentTime+this.sustain+this.release);
 };
