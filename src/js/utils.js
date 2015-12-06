@@ -1,9 +1,3 @@
-module.exports.forEach = function(iterable, callback){
-    for(var i=0; i<iterable.length; i++){
-        callback(iterable[i], i);
-    }
-};
-
 module.exports.shuffle = function(array){
     var randomIndex;
     var length = array.length;
@@ -18,24 +12,19 @@ module.exports.shuffle = function(array){
 };
 
 module.exports.randomArray = function(length){
-    var array = [];
-
-    for(var i=1; i<length+1; i++){
-        array.push(i);
-    }
-
+    var array = module.exports.range(1, length+1);
     module.exports.shuffle(array);
-
     return array;
 };
 
-module.exports.range = function(start, stop){
+module.exports.range = function(start, stop, step){
     var array = [];
 
-    var i = stop===undefined?0:start;
-    var end = stop!==undefined?stop:start;
+    var i = stop === undefined ? 0 : start;
+    var end = stop !== undefined ? stop : start;
+    step = step === undefined ? 1 : step;
 
-    for(i; i<=end; i++){
+    for(i; step > 0? i<end: i>end; i+=step){
         array.push(i);
     }
 
@@ -43,7 +32,11 @@ module.exports.range = function(start, stop){
 };
 
 module.exports.reverse = function(array){
-    array.reverse();
+    return array.reverse();
+};
+
+module.exports.concat = function(){
+    return Array.prototype.concat.apply([], arguments);
 };
 
 module.exports.checkSorted = function(array){

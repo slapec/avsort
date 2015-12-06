@@ -79,12 +79,6 @@ AVArray.prototype.getMin = function(){
     return {value: min, index: minIndex};
 };
 
-AVArray.prototype._swap = function(i, j){
-    var temp = this[i];
-    this[i] = this[j];
-    this[j] = temp;
-};
-
 
 /* Methods which create instructions too ----------------------------------- */
 AVArray.prototype.swap = function(i, j){

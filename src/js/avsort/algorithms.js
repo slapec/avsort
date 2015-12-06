@@ -29,16 +29,13 @@ function(avsort, utils){
     avsort.setArray(utils.randomArray(n));
 
     avsort.sort(function(array){
-        var swapped;
-        do {
-            swapped = false;
-            for(var i=0; i<array.length-1; i++){
-                if(array.lt(i+1, i)){
-                    array.swap(i+1, i);
-                    swapped = true;
+        for(var i=array.length-1; 0<i; --i){
+            for(var j=0; j<i; ++j){
+                if(array.gt(j, j+1)){
+                    array.swap(j, j+1);
                 }
             }
-        } while(swapped);
+        }
     });
 });
 
@@ -76,39 +73,35 @@ function(avsort, utils){
             return start;
         }
 
-        function _quick(start, end){
-            var index;
+        (function quick(start, end){
             if(array.length > 1){
-                index = partition(start, end);
+                var index = partition(start, end);
 
                 if(start < index - 1){
-                    _quick(start, index-1);
+                    quick(start, index-1);
                 }
                 if(index < end){
-                    _quick(index, end);
+                    quick(index, end);
                 }
             }
-        }
-
-        _quick(0, array.length-1);
+        })(0, array.length-1);
     });
 });
 
 module.exports.insertion = new AVAlgorithm('Insertion sort',
 function(avsort, utils){
-    var n = 80;
+    var n = 20;
     avsort.setColumnSpacing(1);
     avsort.setColumnWidth(parseInt((window.innerWidth-(n*avsort.columnSpacing)) / n));
     avsort.setArray(utils.randomArray(n));
 
     avsort.sort(function(array){
         for(var i=1; i<array.length; i++){
-            var value = array[i];
-            for(var j=i; j>0 && value < array[j-1]; j--){
-                array.lt(j, j-1);
+            var j = i;
+            while(j > 0 && array.gt(j-1, j)){
                 array.swap(j, j-1);
+                j--;
             }
-            array[j] = value;
         }
     });
 });
@@ -121,14 +114,14 @@ function(avsort, utils){
     avsort.setArray(utils.randomArray(n));
 
     avsort.sort(function(array){
-        var siftDown = function(a, start, end){
+        function siftDown(start, end){
             var root = start;
             while(root*2+1 < end){
                 var child = 2*root + 1;
                 if((child + 1 < end ) && array[child] < array[child + 1]){
                     child += 1;
                 }
-                if(array[root] < array[child]){
+                if(array.lt(root, child)){
                     array.swap(child, root);
                     root = child;
                 }
@@ -136,19 +129,15 @@ function(avsort, utils){
                     return;
                 }
             }
-        };
+        }
 
-        var heapsort = function(a){
-            for(var start = parseInt(array.length-2)/2; start>=0; start--){
-                siftDown(a, start, array.length);
-            }
+        for(var start = parseInt(array.length-2)/2; start>=0; start--){
+            siftDown(start, array.length);
+        }
 
-            for(var end=array.length-1; end > 0; end--){
-                array.swap(end, 0);
-                siftDown(a, 0, end);
-            }
-        };
-
-        heapsort(array, array.length);
+        for(var end=array.length-1; end>0; end--){
+            array.swap(end, 0);
+            siftDown(0, end);
+        }
     });
 });

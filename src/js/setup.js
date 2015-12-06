@@ -1,7 +1,6 @@
 var algos = require('./avsort/algorithms.js');
 var defaults = require('./defaults.js');
 var utils = require('./utils.js');
-var forEach = utils.forEach;
 
 var AVCanvas = require('./avsort/canvas.js');
 
@@ -16,7 +15,7 @@ var errorHandler = function (e) {
     var divError = document.createElement('div');
     divError.classList.add('eval-error');
     divError.innerHTML = 'Error: ' + e.error.message + ' at line: ' + e.lineno + ', column: ' + e.colno;
-    errorWidgets.push(editor.addLineWidget(e.lineno - 1, divError));
+    errorWidgets.push(editor.addLineWidget(editor.lineCount()-1, divError));
 };
 
 
@@ -72,7 +71,7 @@ var addAlgorithmOption = function(to, obj){
 var registerAlgorithms = function(){
     var grpBuiltins = q('#build-in-algorithms');
     var builtins = Object.keys(algos);
-    forEach(builtins, function(name){
+    builtins.forEach(function(name){
         var algorithm = algos[name];
 
         addAlgorithmOption(grpBuiltins, {
@@ -84,7 +83,7 @@ var registerAlgorithms = function(){
     var grpUserAlgos = q('#user-algorithms');
     var algorithms = localStorage.getItem('algorithms');
     if(algorithms !== null){
-        forEach(JSON.parse(algorithms), function(o){
+        JSON.parse(algorithms).forEach(function(o){
             addAlgorithmOption(grpUserAlgos, o);
         });
     }
@@ -95,7 +94,7 @@ var serializeSettings = function(form){
     var settings = {};
     var inputs = qa(form, 'input');
 
-    forEach(inputs, function(input){
+    inputs.forEach(function(input){
         switch(input.type){
             case 'checkbox':
                 settings[input.id] = input.checked;
@@ -112,7 +111,7 @@ var deserializeSettings = function(form){
     if(json !== null){
         var settings = JSON.parse(json);
 
-        forEach(Object.keys(settings), function(k){
+        Object.keys(settings).forEach(function(k){
             var v = settings[k];
             var input = q(form, '[id='+ k +']');
 
@@ -274,11 +273,9 @@ module.exports = function () {
             }, algorithms.length>0?algorithms[0].index:-1) + 1;
 
             if(nameConflicts.length > 0){
-                var conflictedName = name + ' #' +newAlgorithmIndex;
-
-                alert("An algorithm has already been saved as '" + name + "'\n" +
-                "Your code will be renamed to '" + conflictedName + "'");
-                name = conflictedName;
+                alert("An algorithm has already been saved as '" + name + "'.\n" +
+                      "Choose a different name");
+                return;
             }
 
             var obj = {name: name, index: newAlgorithmIndex};
@@ -330,7 +327,7 @@ module.exports = function () {
 
     var btnRun = q('#run');
     btnRun.onclick = function(){
-        forEach(errorWidgets, function (o) {
+        errorWidgets.forEach(function (o) {
             editor.removeLineWidget(o);
         });
         errorWidgets = [];
